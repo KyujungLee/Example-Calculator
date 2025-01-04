@@ -1,9 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-group = 'com.example1'
+group = 'com.example'
 version = '1.0-SNAPSHOT'
+
+application {
+    mainClassName = 'com.example.calculator2.Main'
+}
+
 
 repositories {
     mavenCentral()

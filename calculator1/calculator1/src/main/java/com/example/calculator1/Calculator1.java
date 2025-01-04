@@ -1,5 +1,4 @@
 package com.example.calculator1;
-
 import java.util.Scanner;
 
 public class Calculator1 {
@@ -19,19 +18,22 @@ public class Calculator1 {
 
             System.out.println("양의 정수(0을 포함)와 연산자를, 엔터로 구분하여 입력하세요. exit를 입력하면 종료됩니다.");
             start = sc.next();
+            if (start.equals("exit")) {
+                System.out.println("프로그램을 종료합니다");
+                break;
+            }
             operator = sc.next();
             end = sc.next();
 
             // 첫번째, 세번째 입력값이 숫자인지 검증, 아니라면 처음으로 돌아감.
-            // 첫번째 입력값이 "exit"인 경우 프로그램 종료.
             for (int i = 0; i < start.length(); i++) {
-                if (start.charAt(i) <= '0' || start.charAt(i) >= '9') {
+                if (start.charAt(i) < '0' || start.charAt(i) > '9') {
                     count++;
                     break;
                 }
             }
             for (int i = 0; i < end.length(); i++) {
-                if (end.charAt(i) <= '0' || end.charAt(i) >= '9') {
+                if (end.charAt(i) < '0' || end.charAt(i) > '9') {
                     count++;
                     break;
                 }
@@ -39,9 +41,6 @@ public class Calculator1 {
             if (count > 0) {
                 System.out.println("올바른 숫자를 입력하세요.");
                 continue;
-            } else if (start.equals("exit")) {
-                System.out.println("프로그램을 종료합니다");
-                break;
             }
 
             // 첫번째, 세번째 입력값이 음의 값을 가질 경우, 처음으로 돌아감.
