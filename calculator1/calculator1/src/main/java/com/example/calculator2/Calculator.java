@@ -5,7 +5,7 @@ public class Calculator {
 
     int num1;
     int num2;
-    Stack<Number> result = new Stack<>();
+    private Stack<Number> result = new Stack<>();
 
 
     public Calculator(int num1, int num2) {
@@ -36,4 +36,19 @@ public class Calculator {
         }
         return result.peek();
     }
+
+    public Number getResult () {
+        return result.peek();
+    }
+
+    public Number setResult (int setNum) {
+        result.pop();
+        result.push(setNum);
+        return result.peek();
+    }
+
+    public void removeResult () {
+        result.remove(0);
+    }
+
 }

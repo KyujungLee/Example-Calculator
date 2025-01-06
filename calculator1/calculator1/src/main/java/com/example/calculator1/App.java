@@ -2,7 +2,7 @@ package com.example.calculator1;
 import java.util.Scanner;
 import com.example.calculator2.Calculator;
 
-public class Calculator1 {
+public class App {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class Calculator1 {
 
             System.out.println("양의 정수(0을 포함)와 연산자를, 엔터로 구분하여 입력하세요. exit를 입력하면 종료됩니다.");
             start = sc.next();
-            if (start.equals("exit")) {
+            if (start.equalsIgnoreCase("exit")) {
                 System.out.println("프로그램을 종료합니다");
                 break;
             }
@@ -72,7 +72,48 @@ public class Calculator1 {
                     break;
                 default:
                     System.out.println("올바른 연산자를 입력하세요");
+                    continue;
+            }
+
+            // 결과값의 조회, 삭제, 변경 기능
+            while (true) {
+                System.out.println();
+                System.out.println("마지막 결과값을 수정 및 조회할 수 있습니다.");
+                System.out.println("가장 먼저 저장된 값을 삭제할 수 있습니다.");
+                System.out.println();
+                System.out.println("마지막 결과값 조회 = r 입력");
+                System.out.println("마지막 결과값 수정 = u 입력");
+                System.out.println("가장 먼저 저장된 결과값 삭제 = d 입력");
+                System.out.println();
+                System.out.println("무시하고 다음 연산 = z");
+                String crud = sc.next();
+                if (crud.equalsIgnoreCase("r")) {
+                    System.out.println("마지막 결과값은 "+calculator.getResult()+" 입니다");
+                } else if (crud.equalsIgnoreCase("u")) {
+                    System.out.println("변경할 값을 입력해주세요. 마지막 결과값이 해당 값으로 수정됩니다.");
+                    while (true) {
+                        String setNum = sc.next();
+                        count = 0;
+                        for (int i = 0; i < setNum.length(); i++) {
+                            if (setNum.charAt(i) < '0' || setNum.charAt(i) > '9') {
+                                count++;
+                                break;
+                            }
+                        }
+                        if (count > 0) {
+                            System.out.println("숫자만 가능합니다. 다시 입력해주세요.");
+                            continue;
+                        }
+                        System.out.println(calculator.setResult(Integer.parseInt(setNum))+"으로 값이 변경되었습니다.");
+                        break;
+                    }
+                } else if (crud.equalsIgnoreCase("d")) {
+                    calculator.removeResult();
+                    System.out.println("값이 삭제되었습니다.");
+                } else if (crud.equalsIgnoreCase("z")) {
+                    System.out.println("처음으로 돌아갑니다.");
                     break;
+                }
             }
         }
 
