@@ -1,12 +1,11 @@
 package com.example.calculator1;
 import java.util.Scanner;
+import com.example.calculator2.Calculator;
 
 public class Calculator1 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int result;
-        double resultdouble;
         int num1;
         int num2;
         String operator;
@@ -14,6 +13,12 @@ public class Calculator1 {
         String end;
 
         while (true) {
+            // 첫번째 값을 입력받음
+            // 첫번째 값이 "exit"라면 프로그램을 종료
+            // 두번째, 세번째 값을 입력받음.
+            // 3가지 입력값의 예외사항 검증
+            // 예외사항이 없다면, 사칙연산 수행, 결과 출력 후 프로그램 재시작.
+
             int count = 0;
 
             System.out.println("양의 정수(0을 포함)와 연산자를, 엔터로 구분하여 입력하세요. exit를 입력하면 종료됩니다.");
@@ -51,31 +56,19 @@ public class Calculator1 {
                 continue;
             }
 
+            Calculator calculator = new Calculator(num1, num2);
             switch (operator) {
                 case "+":
-                    result = num1 + num2;
-                    System.out.println("결과 = " + result);
+                    System.out.println("결과 = " + calculator.add(num1, num2));
                     break;
                 case "-":
-                    result = num1 - num2;
-                    System.out.println("결과 = " + result);
+                    System.out.println("결과 = " + calculator.subtraction(num1, num2));
                     break;
                 case "*":
-                    result = num1 * num2;
-                    System.out.println("결과 = " + result);
+                    System.out.println("결과 = " + calculator.multiply(num1, num2));
                     break;
                 case "/":
-                    // 세번째 입력값이 0일 경우, 처음으로 돌아감.
-                    // 나누기 결과에 소수점이 포함되지 않는 경우 결과를 정수로 출력, 아닌경우 결과를 실수로 출력
-                    if (num2 == 0) {
-                        System.out.println("0으로 나눌 수 없습니다. 다시 입력하세요.");
-                    } else if (num1 > num2 && num1 % num2 == 0) {
-                        result = num1 / num2;
-                        System.out.println("결과 = " + result);
-                    } else {
-                        resultdouble = (double) num1 / num2;
-                        System.out.println("결과 = " + resultdouble);
-                    }
+                    System.out.println("결과 = " + calculator.divide(num1, num2));
                     break;
                 default:
                     System.out.println("올바른 연산자를 입력하세요");

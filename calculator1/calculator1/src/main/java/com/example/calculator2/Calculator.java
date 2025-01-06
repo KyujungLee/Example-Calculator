@@ -1,48 +1,39 @@
 package com.example.calculator2;
+import java.util.Stack;
 
 public class Calculator {
 
-    double resultdouble;
-    int result;
     int num1;
     int num2;
-    String start;
-    String operator;
-    String end;
+    Stack<Number> result = new Stack<>();
 
-    Calculator (String start, String operator, String end) {
-        this.start = start;
-        this.operator = operator;
-        this.end = end;
+
+    public Calculator(int num1, int num2) {
+        this.num1 = num1;
+        this.num2 = num2;
     }
 
-    public void calculate (String start, String operator , String end){
-        num1 = Integer.parseInt(start);
-        num2 = Integer.parseInt(end);
-        switch (operator) {
-            case "+":
-                result = num1 + num2;
-                System.out.println("결과 = "+result);
-                break;
-            case "-":
-                result = num1 - num2;
-                System.out.println("결과 = "+result);
-                break;
-            case "*":
-                result = num1 * num2;
-                System.out.println("결과 = "+result);
-                break;
-            case "/":
-                if ( num1 >= num2 && num1%num2==0) {
-                    result = num1 / num2;
-                    System.out.println("결과 = "+result);
-                } else {
-                    resultdouble = (double)num1/num2;
-                    System.out.println("결과 = "+resultdouble);
-                }
-                break;
-            default:
-                break;
+    public Number add (int num1, int num2){
+        result.add(num1 + num2);
+        return result.peek();
+    }
+
+    public Number subtraction (int num1, int num2){
+        result.add(num1 - num2);
+        return result.peek();
+    }
+
+    public Number multiply (int num1, int num2){
+        result.add(num1 * num2);
+        return result.peek();
+    }
+
+    public Number divide (int num1, int num2){
+        if (num1>=num2 && num1%num2==0) {
+            result.add(num1 / num2);
+        } else {
+            result.add((double) num1 / num2);
         }
+        return result.peek();
     }
 }
