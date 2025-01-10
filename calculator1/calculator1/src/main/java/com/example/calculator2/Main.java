@@ -33,7 +33,6 @@ public class Main {
                 int num1 = Integer.parseInt(start);
                 int num2 = Integer.parseInt(end);
                 Calculator calculator = new Calculator(num1, num2);
-
                 switch (operator) {
                     case "+":
                         System.out.println("결과 = " + calculator.add(num1, num2));
